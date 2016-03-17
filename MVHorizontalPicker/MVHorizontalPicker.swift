@@ -56,6 +56,16 @@ private extension UIView {
             layer.cornerRadius = newValue
         }
     }
+    
+    @IBInspectable public var font: UIFont? {
+        didSet {
+            for view in scrollView.subviews {
+                if let item = view as? MVPickerItemView {
+                    item.font = font
+                }
+            }
+        }
+    }
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -75,7 +85,7 @@ private extension UIView {
     }
     
     public override func prepareForInterfaceBuilder() {
-        
+        super.prepareForInterfaceBuilder()
     }
     
     private var _selectedItemIndex: Int = 0
@@ -117,7 +127,7 @@ private extension UIView {
         var offsetX: CGFloat = 0
         for title in titles {
             let frame = CGRect(x: offsetX, y: CGFloat(0.0), width: size.width, height: size.height)
-            let itemView = MVPickerItemView(frame: frame, text: title)
+            let itemView = MVPickerItemView(frame: frame, text: title, font: font)
             scrollView.addSubview(itemView)
             offsetX += size.width
         }

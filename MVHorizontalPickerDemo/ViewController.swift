@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        picker.font = UIFont.boldSystemFontOfSize(18)
     
         picker.titles = [ "100MB", "200MB", "500MB", "1GB", "2GB", "5GB" ]
     }
