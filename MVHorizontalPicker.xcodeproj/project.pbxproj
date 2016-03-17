@@ -8,12 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		659A70331C9B36590044E5CD /* MVHorizontalPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 659A70321C9B36590044E5CD /* MVHorizontalPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		659A703B1C9B36700044E5CD /* MVHorizontalPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 659A703A1C9B36700044E5CD /* MVHorizontalPicker.xib */; };
+		659A703D1C9B37A90044E5CD /* MVHorizontalPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659A703C1C9B37A90044E5CD /* MVHorizontalPicker.swift */; };
+		659A703F1C9B380C0044E5CD /* MVScrollerClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659A703E1C9B380C0044E5CD /* MVScrollerClipView.swift */; };
+		659A70411C9B3A910044E5CD /* MVPickerItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659A70401C9B3A910044E5CD /* MVPickerItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		659A702F1C9B36590044E5CD /* MVHorizontalPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MVHorizontalPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		659A70321C9B36590044E5CD /* MVHorizontalPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MVHorizontalPicker.h; sourceTree = "<group>"; };
 		659A70341C9B36590044E5CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		659A703A1C9B36700044E5CD /* MVHorizontalPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MVHorizontalPicker.xib; sourceTree = "<group>"; };
+		659A703C1C9B37A90044E5CD /* MVHorizontalPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MVHorizontalPicker.swift; sourceTree = "<group>"; };
+		659A703E1C9B380C0044E5CD /* MVScrollerClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MVScrollerClipView.swift; sourceTree = "<group>"; };
+		659A70401C9B3A910044E5CD /* MVPickerItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MVPickerItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +56,10 @@
 			children = (
 				659A70321C9B36590044E5CD /* MVHorizontalPicker.h */,
 				659A70341C9B36590044E5CD /* Info.plist */,
+				659A703A1C9B36700044E5CD /* MVHorizontalPicker.xib */,
+				659A703C1C9B37A90044E5CD /* MVHorizontalPicker.swift */,
+				659A703E1C9B380C0044E5CD /* MVScrollerClipView.swift */,
+				659A70401C9B3A910044E5CD /* MVPickerItemView.swift */,
 			);
 			path = MVHorizontalPicker;
 			sourceTree = "<group>";
@@ -120,6 +132,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				659A703B1C9B36700044E5CD /* MVHorizontalPicker.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +143,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				659A703D1C9B37A90044E5CD /* MVHorizontalPicker.swift in Sources */,
+				659A70411C9B3A910044E5CD /* MVPickerItemView.swift in Sources */,
+				659A703F1C9B380C0044E5CD /* MVScrollerClipView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +244,7 @@
 		659A70381C9B36590044E5CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -238,12 +255,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.musevisions.iOS.MVHorizontalPicker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		659A70391C9B36590044E5CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
