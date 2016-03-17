@@ -32,19 +32,28 @@ private extension UIView {
 
 @IBDesignable public class MVHorizontalPicker: UIControl {
     
-    @IBInspectable public var borderWidth: CGFloat = 0 {
-        didSet {
-            layer.borderWidth = borderWidth
+    @IBInspectable public var borderWidth: CGFloat {
+        get {
+            return layer.borderWidth
+        }
+        set {
+            layer.borderWidth = newValue
         }
     }
     @IBInspectable public var borderColor: UIColor? {
-        didSet {
-            layer.borderColor = borderColor?.CGColor
+        get {
+            return layer.borderColor != nil ? UIColor(CGColor: layer.borderColor!) : nil
+        }
+        set {
+            layer.borderColor = newValue?.CGColor
         }
     }
-    @IBInspectable public var cornerRadius: CGFloat = 0 {
-        didSet {
-            layer.cornerRadius = cornerRadius
+    @IBInspectable public var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
         }
     }
 
@@ -59,6 +68,14 @@ private extension UIView {
             
             view.anchorToSuperview()
         }
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    public override func prepareForInterfaceBuilder() {
+        
     }
     
     private var _selectedItemIndex: Int = 0
