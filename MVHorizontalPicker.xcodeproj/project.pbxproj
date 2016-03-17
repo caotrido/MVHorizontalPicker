@@ -12,7 +12,38 @@
 		659A703D1C9B37A90044E5CD /* MVHorizontalPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659A703C1C9B37A90044E5CD /* MVHorizontalPicker.swift */; };
 		659A703F1C9B380C0044E5CD /* MVScrollerClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659A703E1C9B380C0044E5CD /* MVScrollerClipView.swift */; };
 		659A70411C9B3A910044E5CD /* MVPickerItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659A70401C9B3A910044E5CD /* MVPickerItemView.swift */; };
+		659A70491C9B4B400044E5CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659A70481C9B4B400044E5CD /* AppDelegate.swift */; };
+		659A704B1C9B4B400044E5CD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659A704A1C9B4B400044E5CD /* ViewController.swift */; };
+		659A704E1C9B4B400044E5CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 659A704C1C9B4B400044E5CD /* Main.storyboard */; };
+		659A70501C9B4B400044E5CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 659A704F1C9B4B400044E5CD /* Assets.xcassets */; };
+		659A70531C9B4B400044E5CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 659A70511C9B4B400044E5CD /* LaunchScreen.storyboard */; };
+		659A70581C9B4C2B0044E5CD /* MVHorizontalPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 659A702F1C9B36590044E5CD /* MVHorizontalPicker.framework */; };
+		659A70591C9B4C2B0044E5CD /* MVHorizontalPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 659A702F1C9B36590044E5CD /* MVHorizontalPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		659A705A1C9B4C2B0044E5CD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 659A70261C9B36590044E5CD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 659A702E1C9B36590044E5CD;
+			remoteInfo = MVHorizontalPicker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		659A705C1C9B4C2B0044E5CD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				659A70591C9B4C2B0044E5CD /* MVHorizontalPicker.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		659A702F1C9B36590044E5CD /* MVHorizontalPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MVHorizontalPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,6 +53,13 @@
 		659A703C1C9B37A90044E5CD /* MVHorizontalPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MVHorizontalPicker.swift; sourceTree = "<group>"; };
 		659A703E1C9B380C0044E5CD /* MVScrollerClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MVScrollerClipView.swift; sourceTree = "<group>"; };
 		659A70401C9B3A910044E5CD /* MVPickerItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MVPickerItemView.swift; sourceTree = "<group>"; };
+		659A70461C9B4B400044E5CD /* MVHorizontalPickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVHorizontalPickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		659A70481C9B4B400044E5CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		659A704A1C9B4B400044E5CD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		659A704D1C9B4B400044E5CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		659A704F1C9B4B400044E5CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		659A70521C9B4B400044E5CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		659A70541C9B4B400044E5CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +70,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		659A70431C9B4B400044E5CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				659A70581C9B4C2B0044E5CD /* MVHorizontalPicker.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -39,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				659A70311C9B36590044E5CD /* MVHorizontalPicker */,
+				659A70471C9B4B400044E5CD /* MVHorizontalPickerDemo */,
 				659A70301C9B36590044E5CD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				659A702F1C9B36590044E5CD /* MVHorizontalPicker.framework */,
+				659A70461C9B4B400044E5CD /* MVHorizontalPickerDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -62,6 +110,19 @@
 				659A70401C9B3A910044E5CD /* MVPickerItemView.swift */,
 			);
 			path = MVHorizontalPicker;
+			sourceTree = "<group>";
+		};
+		659A70471C9B4B400044E5CD /* MVHorizontalPickerDemo */ = {
+			isa = PBXGroup;
+			children = (
+				659A70481C9B4B400044E5CD /* AppDelegate.swift */,
+				659A704A1C9B4B400044E5CD /* ViewController.swift */,
+				659A704C1C9B4B400044E5CD /* Main.storyboard */,
+				659A704F1C9B4B400044E5CD /* Assets.xcassets */,
+				659A70511C9B4B400044E5CD /* LaunchScreen.storyboard */,
+				659A70541C9B4B400044E5CD /* Info.plist */,
+			);
+			path = MVHorizontalPickerDemo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,16 +157,39 @@
 			productReference = 659A702F1C9B36590044E5CD /* MVHorizontalPicker.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		659A70451C9B4B400044E5CD /* MVHorizontalPickerDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 659A70551C9B4B400044E5CD /* Build configuration list for PBXNativeTarget "MVHorizontalPickerDemo" */;
+			buildPhases = (
+				659A70421C9B4B400044E5CD /* Sources */,
+				659A70431C9B4B400044E5CD /* Frameworks */,
+				659A70441C9B4B400044E5CD /* Resources */,
+				659A705C1C9B4C2B0044E5CD /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				659A705B1C9B4C2B0044E5CD /* PBXTargetDependency */,
+			);
+			name = MVHorizontalPickerDemo;
+			productName = MVHorizontalPickerDemo;
+			productReference = 659A70461C9B4B400044E5CD /* MVHorizontalPickerDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		659A70261C9B36590044E5CD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = musevisions;
 				TargetAttributes = {
 					659A702E1C9B36590044E5CD = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					659A70451C9B4B400044E5CD = {
 						CreatedOnToolsVersion = 7.2;
 					};
 				};
@@ -116,6 +200,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 659A70251C9B36590044E5CD;
 			productRefGroup = 659A70301C9B36590044E5CD /* Products */;
@@ -123,6 +208,7 @@
 			projectRoot = "";
 			targets = (
 				659A702E1C9B36590044E5CD /* MVHorizontalPicker */,
+				659A70451C9B4B400044E5CD /* MVHorizontalPickerDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -133,6 +219,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				659A703B1C9B36700044E5CD /* MVHorizontalPicker.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		659A70441C9B4B400044E5CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				659A70531C9B4B400044E5CD /* LaunchScreen.storyboard in Resources */,
+				659A70501C9B4B400044E5CD /* Assets.xcassets in Resources */,
+				659A704E1C9B4B400044E5CD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,7 +245,43 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		659A70421C9B4B400044E5CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				659A704B1C9B4B400044E5CD /* ViewController.swift in Sources */,
+				659A70491C9B4B400044E5CD /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		659A705B1C9B4C2B0044E5CD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 659A702E1C9B36590044E5CD /* MVHorizontalPicker */;
+			targetProxy = 659A705A1C9B4C2B0044E5CD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		659A704C1C9B4B400044E5CD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				659A704D1C9B4B400044E5CD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		659A70511C9B4B400044E5CD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				659A70521C9B4B400044E5CD /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		659A70351C9B36590044E5CD /* Debug */ = {
@@ -276,6 +408,30 @@
 			};
 			name = Release;
 		};
+		659A70561C9B4B400044E5CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = MVHorizontalPickerDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.musevisions.iOS.MVHorizontalPickerDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		659A70571C9B4B400044E5CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = MVHorizontalPickerDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.musevisions.iOS.MVHorizontalPickerDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -293,6 +449,14 @@
 			buildConfigurations = (
 				659A70381C9B36590044E5CD /* Debug */,
 				659A70391C9B36590044E5CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		659A70551C9B4B400044E5CD /* Build configuration list for PBXNativeTarget "MVHorizontalPickerDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				659A70561C9B4B400044E5CD /* Debug */,
+				659A70571C9B4B400044E5CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

@@ -30,7 +30,23 @@ private extension UIView {
     }
 }
 
-public class MVHorizontalPicker: UIControl {
+@IBDesignable public class MVHorizontalPicker: UIControl {
+    
+    @IBInspectable public var borderWidth: CGFloat = 0 {
+        didSet {
+            layer.borderWidth = borderWidth
+        }
+    }
+    @IBInspectable public var borderColor: UIColor? {
+        didSet {
+            layer.borderColor = borderColor?.CGColor
+        }
+    }
+    @IBInspectable public var cornerRadius: CGFloat = 0 {
+        didSet {
+            layer.cornerRadius = cornerRadius
+        }
+    }
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
