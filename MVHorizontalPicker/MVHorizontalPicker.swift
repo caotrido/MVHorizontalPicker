@@ -150,7 +150,6 @@ import UIKit
         if let last = scrollView.subviews.last {
             scrollView.addConstraint(last.makeConstraint(attribute: .Trailing, toView: scrollView, constant: 0))
         }
-        //scrollView.layoutIfNeeded()
         scrollView.contentOffset = CGPointZero
     }
     

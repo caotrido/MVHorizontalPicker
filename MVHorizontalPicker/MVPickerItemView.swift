@@ -41,9 +41,9 @@ import UIKit
         super.init(frame: CGRectZero)
         addLabel(label)
         label.text = text
-        
         label.font = font
         label.textAlignment = NSTextAlignment.Center
+        label.lineBreakMode = .ByTruncatingMiddle
         
         updateTextColor(selected: false)
     }
@@ -51,9 +51,9 @@ import UIKit
     func addLabel(label: UILabel) {
         self.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(label.makeConstraint(attribute: .Leading, toView: self, constant: 0))
-        self.addConstraint(label.makeConstraint(attribute: .Trailing, toView: self, constant: 0))
-        self.addConstraint(label.makeConstraint(attribute: .CenterY, toView: self, constant: 0))
+        self.addConstraint(label.makeEqualityConstraint(attribute: .Leading, toView: self))
+        self.addConstraint(label.makeEqualityConstraint(attribute: .Trailing, toView: self))
+        self.addConstraint(label.makeEqualityConstraint(attribute: .CenterY, toView: self))
     }
 
     required init?(coder aDecoder: NSCoder) {
