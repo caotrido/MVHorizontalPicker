@@ -59,7 +59,7 @@ private extension UIView {
     
     @IBInspectable public var textColor: UIColor! = UIColor.blackColor() {
         didSet {
-            let _ = scrollView.subviews.map { ($0 as? MVPickerItemView)?.selectedTextColor = textColor }
+            let _ = scrollView?.subviews.map { ($0 as? MVPickerItemView)?.selectedTextColor = textColor }
         }
     }
     
@@ -81,7 +81,7 @@ private extension UIView {
             scrollViewWidthConstraint.constant = newValue
             self.layoutIfNeeded()
             reloadSubviews(titles: titles)
-            self.selectedItemIndex = _selectedItemIndex
+            updateSelectedIndex(_selectedItemIndex, animated: false)
         }
     }
     
@@ -110,6 +110,10 @@ private extension UIView {
             
             reloadSubviews(titles: titles)
             
+            if let firstItemView = scrollView.subviews.first as? MVPickerItemView {
+                firstItemView.selected = true
+            }
+
             previousItemIndex = 0
             _selectedItemIndex = 0
         }
@@ -153,9 +157,6 @@ private extension UIView {
             let itemView = MVPickerItemView(frame: frame, text: title, selectedTextColor: textColor, font: font)
             scrollView.addSubview(itemView)
             offsetX += size.width
-        }
-        if let firstItemView = scrollView.subviews.first as? MVPickerItemView {
-            firstItemView.selected = true
         }
     }
     
