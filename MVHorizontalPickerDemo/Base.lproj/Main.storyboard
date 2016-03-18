@@ -18,11 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hez-UR-fgI" customClass="MVHorizontalPicker" customModule="MVHorizontalPicker">
-                                <rect key="frame" x="150" y="135" width="300" height="50"/>
+                                <rect key="frame" x="150" y="135" width="300" height="44"/>
                                 <color key="backgroundColor" red="0.82816864530000001" green="0.82816864530000001" blue="0.82816864530000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="MY8-Rz-dew"/>
-                                    <constraint firstAttribute="height" constant="50" id="Qu8-6L-rGg"/>
+                                    <constraint firstAttribute="height" constant="44" id="Qu8-6L-rGg"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">

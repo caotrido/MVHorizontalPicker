@@ -73,7 +73,20 @@ private extension UIView {
         }
     }
     
+    public var itemWidth: CGFloat {
+        get {
+            return scrollViewWidthConstraint.constant
+        }
+        set {
+            scrollViewWidthConstraint.constant = newValue
+            self.layoutIfNeeded()
+            reloadSubviews(titles: titles)
+            self.selectedItemIndex = _selectedItemIndex
+        }
+    }
+    
     @IBOutlet private var scrollView: UIScrollView!
+    @IBOutlet private var scrollViewWidthConstraint: NSLayoutConstraint!
 
     private var previousItemIndex: Int?
 
@@ -94,9 +107,6 @@ private extension UIView {
     
     public var titles: [String] = [] {
         didSet {
-            let frame = scrollView.frame
-            scrollView.contentSize = CGSize(width: frame.width * CGFloat(titles.count), height: frame.height)
-            scrollView.contentOffset = CGPointZero
             
             reloadSubviews(titles: titles)
             
@@ -128,6 +138,10 @@ private extension UIView {
 
     private func reloadSubviews(titles titles: [String]) {
         
+        let frame = scrollView.frame
+        scrollView.contentSize = CGSize(width: frame.width * CGFloat(titles.count), height: frame.height)
+        scrollView.contentOffset = CGPointZero
+
         while let subview = scrollView.subviews.first {
             subview.removeFromSuperview()
         }

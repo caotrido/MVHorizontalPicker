@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MVHorizontalPicker" customModule="MVHorizontalPicker" customModuleProvider="target">
             <connections>
                 <outlet property="scrollView" destination="RX4-Yj-xSM" id="U7V-kx-7rI"/>
+                <outlet property="scrollViewWidthConstraint" destination="t7y-u6-c81" id="W6a-PN-cEj"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
