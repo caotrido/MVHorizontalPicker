@@ -11,7 +11,7 @@ import MVHorizontalPicker
 
 class ViewController: UIViewController {
 
-    @IBOutlet var maximumCacheSizeLabel: UILabel!
+    @IBOutlet var titleLabel: UILabel!
     @IBOutlet var picker: MVHorizontalPicker!
     @IBOutlet var itemWidthSelector: UISegmentedControl!
     
@@ -20,7 +20,7 @@ class ViewController: UIViewController {
 
         picker.font = UIFont.boldSystemFontOfSize(18)
     
-        picker.titles = [ "100MB", "200MB", "500MB", "1GB", "2GB", "5GB" ]
+        picker.titles = [ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ]
         
         picker.itemWidth = itemWidth(itemWidthSelector)
 
@@ -34,8 +34,7 @@ class ViewController: UIViewController {
     
     func updateLabel() {
         
-        let title = picker.titles[picker.selectedItemIndex]
-        maximumCacheSizeLabel.text = "Maximum Cache Size: \(title)"
+        titleLabel.text = picker.titles[picker.selectedItemIndex]
         //print("index: \(picker.selectedItemIndex), title: \(title)")
     }
 
@@ -46,10 +45,10 @@ class ViewController: UIViewController {
     
     func itemWidth(itemWidthSelector: UISegmentedControl) -> CGFloat {
         switch itemWidthSelector.selectedSegmentIndex {
-        case 0: return 75
-        case 1: return 100
-        case 2: return 125
-        default: return 75
+        case 0: return 100
+        case 1: return 125
+        case 2: return 150
+        default: return 100
         }
     }
 }
