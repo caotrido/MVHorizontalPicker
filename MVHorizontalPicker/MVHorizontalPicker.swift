@@ -80,8 +80,10 @@ private extension UIView {
         set {
             scrollViewWidthConstraint.constant = newValue
             self.layoutIfNeeded()
-            reloadSubviews(titles: titles)
-            updateSelectedIndex(_selectedItemIndex, animated: false)
+            if titles.count > 0 {
+                reloadSubviews(titles: titles)
+                updateSelectedIndex(_selectedItemIndex, animated: false)
+            }
         }
     }
     

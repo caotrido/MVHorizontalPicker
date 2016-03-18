@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         picker.font = UIFont.boldSystemFontOfSize(18)
     
         picker.titles = [ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ]
-        
+
         picker.itemWidth = itemWidth(itemWidthSelector)
 
         updateLabel()
