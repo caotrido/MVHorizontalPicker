@@ -8,8 +8,10 @@
 
 import UIKit
 
-@objc class MVPickerItemView: UILabel {
+@objc class MVPickerItemView: UIView {
 
+    let label: UILabel
+    
     var selected: Bool = false {
         didSet {
             updateTextColor(selected: selected)
@@ -21,18 +23,37 @@ import UIKit
             updateTextColor(selected: selected)
         }
     }
+    
+    var font: UIFont? {
+        get {
+            return label.font
+        }
+        set {
+            label.font = newValue
+        }
+    }
 
-    init(frame: CGRect, text: String, selectedTextColor: UIColor, font: UIFont?) {
+    init(text: String, selectedTextColor: UIColor, font: UIFont?) {
         
+        self.label = UILabel()
         self.selectedTextColor = selectedTextColor
-        super.init(frame: frame)
-        self.text = text
         
-        self.font = font
-        self.backgroundColor = UIColor.clearColor()
-        self.textAlignment = NSTextAlignment.Center
+        super.init(frame: CGRectZero)
+        addLabel(label)
+        label.text = text
+        
+        label.font = font
+        label.textAlignment = NSTextAlignment.Center
         
         updateTextColor(selected: false)
+    }
+    
+    func addLabel(label: UILabel) {
+        self.addSubview(label)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        self.addConstraint(label.makeConstraint(attribute: .Leading, toView: self, constant: 0))
+        self.addConstraint(label.makeConstraint(attribute: .Trailing, toView: self, constant: 0))
+        self.addConstraint(label.makeConstraint(attribute: .CenterY, toView: self, constant: 0))
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -42,6 +63,6 @@ import UIKit
     func updateTextColor(selected selected: Bool) {
         
         let alpha: CGFloat = selected ? 1.0 : 0.5
-        self.textColor = selectedTextColor.colorWithAlphaComponent(alpha)
+        self.label.textColor = selectedTextColor.colorWithAlphaComponent(alpha)
     }
 }

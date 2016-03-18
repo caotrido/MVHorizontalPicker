@@ -26,7 +26,7 @@ class ViewController: UIViewController {
 
         updateLabel()
     }
-
+    
     @IBAction func pickerValueChanged(sender: AnyObject) {
 
         updateLabel()

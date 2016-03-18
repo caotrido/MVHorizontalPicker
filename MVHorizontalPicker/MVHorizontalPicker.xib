@@ -16,11 +16,11 @@
             <rect key="frame" x="0.0" y="0.0" width="300" height="36"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RX4-Yj-xSM">
-                    <rect key="frame" x="113" y="0.0" width="75" height="36"/>
+                <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RX4-Yj-xSM">
+                    <rect key="frame" x="100.5" y="0.0" width="100" height="36"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="75" id="t7y-u6-c81"/>
+                        <constraint firstAttribute="width" constant="100" id="t7y-u6-c81"/>
                     </constraints>
                     <connections>
                         <outlet property="delegate" destination="-1" id="89S-mS-FJ7"/>
@@ -36,13 +36,13 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="RX4-Yj-xSM" firstAttribute="top" secondItem="6el-FY-fzT" secondAttribute="top" id="0CV-SD-Pu7"/>
                 <constraint firstItem="RX4-Yj-xSM" firstAttribute="centerX" secondItem="6el-FY-fzT" secondAttribute="centerX" id="AlF-T9-OTB"/>
                 <constraint firstAttribute="bottom" secondItem="8ez-Bf-8Vv" secondAttribute="bottom" id="Gc6-ur-Qcr"/>
+                <constraint firstAttribute="bottom" secondItem="RX4-Yj-xSM" secondAttribute="bottom" id="KkG-ae-0Yr"/>
                 <constraint firstAttribute="trailing" secondItem="8ez-Bf-8Vv" secondAttribute="trailing" id="ULU-Yx-E1I"/>
-                <constraint firstAttribute="bottom" secondItem="RX4-Yj-xSM" secondAttribute="bottom" id="dbC-BF-thS"/>
                 <constraint firstItem="8ez-Bf-8Vv" firstAttribute="top" secondItem="6el-FY-fzT" secondAttribute="top" id="kPs-wA-Cfn"/>
                 <constraint firstItem="8ez-Bf-8Vv" firstAttribute="leading" secondItem="6el-FY-fzT" secondAttribute="leading" id="ua7-iA-7fi"/>
+                <constraint firstItem="RX4-Yj-xSM" firstAttribute="top" secondItem="6el-FY-fzT" secondAttribute="top" id="yar-6N-ulZ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

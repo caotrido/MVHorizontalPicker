@@ -19,6 +19,7 @@
 		659A70531C9B4B400044E5CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 659A70511C9B4B400044E5CD /* LaunchScreen.storyboard */; };
 		659A70581C9B4C2B0044E5CD /* MVHorizontalPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 659A702F1C9B36590044E5CD /* MVHorizontalPicker.framework */; };
 		659A70591C9B4C2B0044E5CD /* MVHorizontalPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 659A702F1C9B36590044E5CD /* MVHorizontalPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		659A705E1C9CC28A0044E5CD /* UIViewAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659A705D1C9CC28A0044E5CD /* UIViewAutoLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		659A704F1C9B4B400044E5CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		659A70521C9B4B400044E5CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		659A70541C9B4B400044E5CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		659A705D1C9CC28A0044E5CD /* UIViewAutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewAutoLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				659A703C1C9B37A90044E5CD /* MVHorizontalPicker.swift */,
 				659A703E1C9B380C0044E5CD /* MVScrollerClipView.swift */,
 				659A70401C9B3A910044E5CD /* MVPickerItemView.swift */,
+				659A705D1C9CC28A0044E5CD /* UIViewAutoLayout.swift */,
 			);
 			path = MVHorizontalPicker;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				659A703D1C9B37A90044E5CD /* MVHorizontalPicker.swift in Sources */,
+				659A705E1C9CC28A0044E5CD /* UIViewAutoLayout.swift in Sources */,
 				659A70411C9B3A910044E5CD /* MVPickerItemView.swift in Sources */,
 				659A703F1C9B380C0044E5CD /* MVScrollerClipView.swift in Sources */,
 			);

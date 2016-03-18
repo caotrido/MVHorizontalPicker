@@ -8,27 +8,6 @@
 
 import UIKit
 
-private extension UIView {
-    
-    func anchorToSuperview() {
-        
-        if let superview = self.superview {
-            self.translatesAutoresizingMaskIntoConstraints = false
-            
-            superview.addConstraints([
-                makeEqualityConstraint(attribute: .Left, toView: superview),
-                makeEqualityConstraint(attribute: .Top, toView: superview),
-                makeEqualityConstraint(attribute: .Right, toView: superview),
-                makeEqualityConstraint(attribute: .Bottom, toView: superview)
-                ])
-        }
-    }
-    func makeEqualityConstraint(attribute attribute: NSLayoutAttribute, toView view: UIView) -> NSLayoutConstraint {
-        
-        return NSLayoutConstraint(item: self, attribute: attribute, relatedBy: .Equal,
-            toItem: view, attribute: attribute, multiplier: 1, constant: 0)
-    }
-}
 
 @IBDesignable public class MVHorizontalPicker: UIControl {
     
@@ -131,6 +110,7 @@ private extension UIView {
             self.addSubview(view)
             
             view.anchorToSuperview()
+            
         }
     }
     
@@ -144,22 +124,34 @@ private extension UIView {
 
     private func reloadSubviews(titles titles: [String]) {
         
-        let frame = scrollView.frame
-        scrollView.contentSize = CGSize(width: frame.width * CGFloat(titles.count), height: frame.height)
-        scrollView.contentOffset = CGPointZero
+        let size = scrollView.frame.size
 
-        while let subview = scrollView.subviews.first {
-            subview.removeFromSuperview()
+        // Remove all subviews
+        while let first = scrollView.subviews.first {
+            first.removeFromSuperview()
         }
 
-        let size = scrollView.frame.size
+        let holder = scrollView.superview!
         var offsetX: CGFloat = 0
         for title in titles {
-            let frame = CGRect(x: offsetX, y: CGFloat(0.0), width: size.width, height: size.height)
-            let itemView = MVPickerItemView(frame: frame, text: title, selectedTextColor: textColor, font: font)
+            let itemView = MVPickerItemView(text: title, selectedTextColor: textColor, font: font)
+            itemView.translatesAutoresizingMaskIntoConstraints = false
             scrollView.addSubview(itemView)
+
+            itemView.addConstraint(itemView.makeConstraint(attribute: .Width, toView: nil, constant: size.width))
+            scrollView.addConstraint(itemView.makeConstraint(attribute: .Leading, toView: scrollView, constant: offsetX))
+            scrollView.addConstraint(itemView.makeEqualityConstraint(attribute: .Top, toView: scrollView))
+            scrollView.addConstraint(itemView.makeEqualityConstraint(attribute: .Bottom, toView: scrollView))
+            holder.addConstraint(itemView.makeEqualityConstraint(attribute: .Height, toView: holder))
+            
             offsetX += size.width
         }
+        
+        if let last = scrollView.subviews.last {
+            scrollView.addConstraint(last.makeConstraint(attribute: .Trailing, toView: scrollView, constant: 0))
+        }
+        //scrollView.layoutIfNeeded()
+        scrollView.contentOffset = CGPointZero
     }
     
     public func setSelectedItemIndex(selectedItemIndex: Int, animated: Bool) {
