@@ -20,13 +20,20 @@ class ViewController: UIViewController {
         picker.font = UIFont.boldSystemFontOfSize(18)
     
         picker.titles = [ "100MB", "200MB", "500MB", "1GB", "2GB", "5GB" ]
+
+        updateLabel()
     }
 
     @IBAction func pickerValueChanged(sender: AnyObject) {
+
+        updateLabel()
+    }
+    
+    func updateLabel() {
         
         let title = picker.titles[picker.selectedItemIndex]
         maximumCacheSizeLabel.text = "Maximum Cache Size: \(title)"
-        print("index: \(picker.selectedItemIndex), title: \(title)")
+        //print("index: \(picker.selectedItemIndex), title: \(title)")
     }
 }
 

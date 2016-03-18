@@ -8,16 +8,23 @@
 
 import UIKit
 
-class MVPickerItemView: UILabel {
+@objc class MVPickerItemView: UILabel {
 
     var selected: Bool = false {
         didSet {
             updateTextColor(selected: selected)
         }
     }
+    
+    var selectedTextColor: UIColor {
+        didSet {
+            updateTextColor(selected: selected)
+        }
+    }
 
-    init(frame: CGRect, text: String, font: UIFont?) {
+    init(frame: CGRect, text: String, selectedTextColor: UIColor, font: UIFont?) {
         
+        self.selectedTextColor = selectedTextColor
         super.init(frame: frame)
         self.text = text
         
@@ -25,20 +32,16 @@ class MVPickerItemView: UILabel {
         self.backgroundColor = UIColor.clearColor()
         self.textAlignment = NSTextAlignment.Center
         
-//        self.layer.shadowOffset = CGSizeMake(0.0, 2.5)
-//        self.layer.shadowOpacity = 0.15
-//        self.layer.shadowRadius = 2.5
-        
         updateTextColor(selected: false)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+        
     func updateTextColor(selected selected: Bool) {
         
-        let white: CGFloat = selected ? 0.2 : 0.5
-        self.textColor = UIColor(white: white, alpha: 1.0)
+        let alpha: CGFloat = selected ? 1.0 : 0.5
+        self.textColor = selectedTextColor.colorWithAlphaComponent(alpha)
     }
 }

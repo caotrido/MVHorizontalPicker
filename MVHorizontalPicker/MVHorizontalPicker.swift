@@ -57,6 +57,12 @@ private extension UIView {
         }
     }
     
+    @IBInspectable public var textColor: UIColor! = UIColor.blackColor() {
+        didSet {
+            let _ = scrollView.subviews.map { ($0 as? MVPickerItemView)?.selectedTextColor = textColor }
+        }
+    }
+    
     @IBInspectable public var font: UIFont? {
         didSet {
             for view in scrollView.subviews {
@@ -130,7 +136,7 @@ private extension UIView {
         var offsetX: CGFloat = 0
         for title in titles {
             let frame = CGRect(x: offsetX, y: CGFloat(0.0), width: size.width, height: size.height)
-            let itemView = MVPickerItemView(frame: frame, text: title, font: font)
+            let itemView = MVPickerItemView(frame: frame, text: title, selectedTextColor: textColor, font: font)
             scrollView.addSubview(itemView)
             offsetX += size.width
         }
