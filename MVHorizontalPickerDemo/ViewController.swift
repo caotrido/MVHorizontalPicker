@@ -11,6 +11,7 @@ import MVHorizontalPicker
 
 class ViewController: UIViewController {
 
+    @IBOutlet var maximumCacheSizeLabel: UILabel!
     @IBOutlet var picker: MVHorizontalPicker!
     
     override func viewDidLoad() {
@@ -21,5 +22,11 @@ class ViewController: UIViewController {
         picker.titles = [ "100MB", "200MB", "500MB", "1GB", "2GB", "5GB" ]
     }
 
+    @IBAction func pickerValueChanged(sender: AnyObject) {
+        
+        let title = picker.titles[picker.selectedItemIndex]
+        maximumCacheSizeLabel.text = "Maximum Cache Size: \(title)"
+        print("index: \(picker.selectedItemIndex), title: \(title)")
+    }
 }
 

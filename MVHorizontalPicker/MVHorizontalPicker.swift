@@ -66,7 +66,39 @@ private extension UIView {
             }
         }
     }
+    
+    @IBOutlet private var scrollView: UIScrollView!
 
+    private var previousItemIndex: Int?
+
+    private var _selectedItemIndex: Int = 0
+    public var selectedItemIndex: Int {
+        get {
+            return _selectedItemIndex
+        }
+        set {
+            if newValue != _selectedItemIndex {
+                _selectedItemIndex = newValue
+                
+                updateSelectedIndex(newValue, animated: false)
+            }
+        }
+    }
+    
+    
+    public var titles: [String] = [] {
+        didSet {
+            let frame = scrollView.frame
+            scrollView.contentSize = CGSize(width: frame.width * CGFloat(titles.count), height: frame.height)
+            scrollView.contentOffset = CGPointZero
+            
+            reloadSubviews(titles: titles)
+            
+            previousItemIndex = 0
+            _selectedItemIndex = 0
+        }
+    }
+    
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -87,37 +119,8 @@ private extension UIView {
     public override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
     }
-    
-    private var _selectedItemIndex: Int = 0
-    public var selectedItemIndex: Int {
-        get {
-            return _selectedItemIndex
-        }
-        set {
-            if newValue != _selectedItemIndex {
-                _selectedItemIndex = newValue
-                
-                updateSelectedIndex(newValue, animated: false)
-            }
-        }
-    }
-    
-    private var previousItemIndex: Int?
-    
-    @IBOutlet private var scrollView: UIScrollView!
-    
-    public var titles: [String]? {
-        didSet {
-            let titles = self.titles ?? []
-            let frame = scrollView.frame
-            scrollView.contentSize = CGSize(width: frame.width * CGFloat(titles.count), height: frame.height)
-            scrollView.contentOffset = CGPointZero
-            
-            addContentCells(titles)
-        }
-    }
-    
-    private func addContentCells(titles: [String]) {
+
+    private func reloadSubviews(titles titles: [String]) {
         
         while let subview = scrollView.subviews.first {
             subview.removeFromSuperview()
@@ -158,7 +161,24 @@ private extension UIView {
 
 extension MVHorizontalPicker: UIScrollViewDelegate {
 
-    func calculateSelectedItemIndex(scrollView: UIScrollView) -> Int {
+    public func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        updateSelectedItem(scrollView)
+    }
+    
+    public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        
+        let selectedItemIndex = updateSelectedItem(scrollView)
+        
+        if selectedItemIndex != _selectedItemIndex {
+            
+            _selectedItemIndex = selectedItemIndex
+            
+            self.sendActionsForControlEvents(.ValueChanged)
+        }
+    }
+
+    private func calculateSelectedItemIndex(scrollView: UIScrollView) -> Int {
         
         let itemWidth = scrollView.frame.width
         let fractionalPage = scrollView.contentOffset.x / itemWidth
@@ -166,7 +186,7 @@ extension MVHorizontalPicker: UIScrollViewDelegate {
         return min(scrollView.subviews.count - 1, max(page, 0))
     }
 
-    func updateSelection(selectedItemIndex: Int, previousItemIndex: Int?) {
+    private func updateSelection(selectedItemIndex: Int, previousItemIndex: Int?) {
         
         if let previousItemIndex = previousItemIndex,
             let previousItem = scrollView.subviews[previousItemIndex] as? MVPickerItemView {
@@ -180,28 +200,15 @@ extension MVHorizontalPicker: UIScrollViewDelegate {
         }
     }
 
-    public func scrollViewDidScroll(scrollView: UIScrollView) {
-        
-        if (scrollView.contentOffset.x < 0.0) {
-            return
-        }
+    private func updateSelectedItem(scrollView: UIScrollView) -> Int {
         
         let selectedItemIndex = calculateSelectedItemIndex(scrollView)
         if selectedItemIndex != previousItemIndex {
             
             updateSelection(selectedItemIndex, previousItemIndex: previousItemIndex)
-
+            
             previousItemIndex = selectedItemIndex
         }
-
-    }
-    
-    public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        
-        let selectedItemIndex = calculateSelectedItemIndex(scrollView)
-        if selectedItemIndex != previousItemIndex {
-            _selectedItemIndex = selectedItemIndex
-            self.sendActionsForControlEvents(.ValueChanged)
-        }
+        return selectedItemIndex
     }
 }

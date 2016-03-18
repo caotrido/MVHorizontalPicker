@@ -35,6 +35,9 @@
                                         <real key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="pickerValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="vez-wO-J7d"/>
+                                </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maximum cache size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AC8-4C-3s6">
                                 <rect key="frame" x="220.5" y="92" width="159.5" height="20.5"/>
@@ -54,6 +57,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="maximumCacheSizeLabel" destination="AC8-4C-3s6" id="7ze-hu-eC1"/>
                         <outlet property="picker" destination="hez-UR-fgI" id="VOq-fA-0VK"/>
                     </connections>
                 </viewController>
