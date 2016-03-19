@@ -39,6 +39,7 @@ import UIKit
     @IBInspectable public var textColor: UIColor! = UIColor.blackColor() {
         didSet {
             let _ = scrollView?.subviews.map { ($0 as? MVPickerItemView)?.selectedTextColor = textColor }
+            triangleIndicator?.color = textColor
         }
     }
     
@@ -68,6 +69,7 @@ import UIKit
     
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var scrollViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet private var triangleIndicator: MVPickerTriangleIndicator!
 
     private var previousItemIndex: Int?
 
