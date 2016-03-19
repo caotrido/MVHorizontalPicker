@@ -52,6 +52,14 @@ import UIKit
         }
     }
     
+    override public var tintColor: UIColor! {
+        didSet {
+            triangleIndicator?.tintColor = self.tintColor
+            layer.borderColor = tintColor?.CGColor
+            let _ = scrollView?.subviews.map{ $0.tintColor = tintColor }
+        }
+    }
+    
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var scrollViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet private var triangleIndicator: MVPickerTriangleIndicator!

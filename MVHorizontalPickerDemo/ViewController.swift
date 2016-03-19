@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     @IBOutlet var itemWidthSelector: UISegmentedControl!
     @IBOutlet var fontSizeSelector: UISegmentedControl!
     @IBOutlet var borderWidthSelector: UISegmentedControl!
+    @IBOutlet var tintColorSelector: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,8 @@ class ViewController: UIViewController {
         picker.font = UIFont.boldSystemFontOfSize(fontSize(fontSizeSelector))
         
         picker.borderWidth = borderWidth(borderWidthSelector)
+        
+        picker.tintColor = tintColor(tintColorSelector)
 
         updateLabel()
     }
@@ -58,6 +61,10 @@ class ViewController: UIViewController {
         
         picker.borderWidth = borderWidth(borderWidthSelector)
     }
+    @IBAction func tintColorChanged(sender: AnyObject) {
+        
+        picker.tintColor = tintColor(tintColorSelector)
+    }
 
     func itemWidth(itemWidthSelector: UISegmentedControl) -> CGFloat {
         switch itemWidthSelector.selectedSegmentIndex {
@@ -79,6 +86,15 @@ class ViewController: UIViewController {
     
     func borderWidth(borderWidthSelector: UISegmentedControl) -> CGFloat {
         return CGFloat(borderWidthSelector.selectedSegmentIndex)
+    }
+    
+    func tintColor(tintColorSelector: UISegmentedControl) -> UIColor {
+        switch tintColorSelector.selectedSegmentIndex {
+        case 0: return UIColor(red: 15.0/255.0, green: 164.0/255.0, blue: 69.0/255.0, alpha: 1.0)
+        case 1: return UIColor(red: 0.0, green: 128.0/255.0, blue: 1.0, alpha: 1.0)
+        case 2: return UIColor.blackColor()
+        default: return UIColor.blackColor()
+        }
     }
 }
 
