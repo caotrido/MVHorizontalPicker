@@ -72,7 +72,6 @@ import UIKit
         }
     }
     
-    
     public var titles: [String] = [] {
         didSet {
             
@@ -124,10 +123,10 @@ import UIKit
         var offsetX: CGFloat = 0
         for title in titles {
             let itemView = MVPickerItemView(text: title, font: font)
-            itemView.translatesAutoresizingMaskIntoConstraints = false
             scrollView.addSubview(itemView)
             itemView.tintColor = self.tintColor
 
+            itemView.translatesAutoresizingMaskIntoConstraints = false
             itemView.addConstraint(itemView.makeConstraint(attribute: .Width, toView: nil, constant: size.width))
             scrollView.addConstraint(itemView.makeConstraint(attribute: .Leading, toView: scrollView, constant: offsetX))
             scrollView.addConstraint(itemView.makeEqualityConstraint(attribute: .Top, toView: scrollView))
@@ -140,6 +139,7 @@ import UIKit
         if let last = scrollView.subviews.last {
             scrollView.addConstraint(last.makeConstraint(attribute: .Trailing, toView: scrollView, constant: 0))
         }
+        scrollView.contentInset = UIEdgeInsetsZero
         scrollView.contentOffset = CGPointZero
     }
     
