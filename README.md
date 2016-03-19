@@ -4,7 +4,7 @@ MVHorizontalPicker is a simple scrollable horizontal control, alternative to UIS
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat
             )](http://mit-license.org)
-[![Platform](http://img.shields.io/badge/platform-ios%20%7C%20osx-lightgrey.svg?style=flat
+[![Platform](https://img.shields.io/badge/platform-ios%20-lightgrey.svg?style=flat
              )](https://developer.apple.com/resources/)
 [![Language](http://img.shields.io/badge/language-swift-orange.svg?style=flat
              )](https://developer.apple.com/swift)
