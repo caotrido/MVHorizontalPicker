@@ -23,8 +23,6 @@ For larger option sets `UIPickerView` can be the right choice, however it also t
 
 `MVHorizontalPicker` is the ideal UI control for choosing an item from up to a dozen possible values.
 
-## Preview
-
 ## Usage
 
 ```swift
