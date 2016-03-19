@@ -19,27 +19,12 @@ import UIKit
             layer.borderWidth = newValue
         }
     }
-    @IBInspectable public var borderColor: UIColor? {
-        get {
-            return layer.borderColor != nil ? UIColor(CGColor: layer.borderColor!) : nil
-        }
-        set {
-            layer.borderColor = newValue?.CGColor
-        }
-    }
     @IBInspectable public var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
         }
         set {
             layer.cornerRadius = newValue
-        }
-    }
-    
-    @IBInspectable public var textColor: UIColor! = UIColor.blackColor() {
-        didSet {
-            let _ = scrollView?.subviews.map { ($0 as? MVPickerItemView)?.selectedTextColor = textColor }
-            triangleIndicator?.color = textColor
         }
     }
     
@@ -113,6 +98,8 @@ import UIKit
             
             view.anchorToSuperview()
             
+            triangleIndicator.tintColor = self.tintColor
+            layer.borderColor = self.tintColor.CGColor
         }
     }
     
@@ -136,9 +123,10 @@ import UIKit
         let holder = scrollView.superview!
         var offsetX: CGFloat = 0
         for title in titles {
-            let itemView = MVPickerItemView(text: title, selectedTextColor: textColor, font: font)
+            let itemView = MVPickerItemView(text: title, font: font)
             itemView.translatesAutoresizingMaskIntoConstraints = false
             scrollView.addSubview(itemView)
+            itemView.tintColor = self.tintColor
 
             itemView.addConstraint(itemView.makeConstraint(attribute: .Width, toView: nil, constant: size.width))
             scrollView.addConstraint(itemView.makeConstraint(attribute: .Leading, toView: scrollView, constant: offsetX))

@@ -9,11 +9,11 @@
 import UIKit
 
 class MVPickerTriangleIndicator: UIView {
-
-    @IBInspectable var color: UIColor? {
+    
+    override var tintColor: UIColor! {
         didSet {
-            triangleShape.strokeColor = color?.CGColor
-            triangleShape.fillColor = color?.CGColor
+            triangleShape.strokeColor = tintColor.CGColor
+            triangleShape.fillColor = tintColor.CGColor
         }
     }
     

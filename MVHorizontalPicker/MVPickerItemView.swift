@@ -18,7 +18,7 @@ import UIKit
         }
     }
     
-    var selectedTextColor: UIColor {
+    override var tintColor: UIColor! {
         didSet {
             updateTextColor(selected: selected)
         }
@@ -33,10 +33,9 @@ import UIKit
         }
     }
 
-    init(text: String, selectedTextColor: UIColor, font: UIFont?) {
+    init(text: String, font: UIFont?) {
         
         self.label = UILabel()
-        self.selectedTextColor = selectedTextColor
         
         super.init(frame: CGRectZero)
         addLabel(label)
@@ -63,6 +62,6 @@ import UIKit
     func updateTextColor(selected selected: Bool) {
         
         let alpha: CGFloat = selected ? 1.0 : 0.5
-        self.label.textColor = selectedTextColor.colorWithAlphaComponent(alpha)
+        self.label.textColor = tintColor.colorWithAlphaComponent(alpha)
     }
 }
