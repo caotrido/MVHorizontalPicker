@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'MVHorizontalPicker'
-  s.version      = '0.0.1'
+  s.version      = '0.0.2'
   s.summary      = 'Simple scrollable horizontal control, alternative to UISegmentedControl'
   s.license      = 'MIT'
   s.homepage     = 'https://github.com/bizz84/MVHorizontalPicker'
