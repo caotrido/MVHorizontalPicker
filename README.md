@@ -44,9 +44,15 @@ class ViewController: UIViewController {
 }
 ```
 
+### Features
+
+* Register to `UIControlEvents.ValueChanged` to check when the picker value has changed (same target/selector method used by `UISegmentedControl`).
+* `@IBDesignable` properties for easier configuration in Interface builder
+* Seamless integration in existing storyboards: Just drag a UIView, set the class type to `MVHorizontalPicker` and configure the presentation properties as needed.
+
 ### Customisation
 
-`MVHorizontalPicker` aims to be customisable. Currently the following UI properties are supported:
+`MVHorizontalPicker` aims to be customisable. The following UI properties are currently supported:
 
 * tintColor
 * font
@@ -68,6 +74,7 @@ use_frameworks!
 
 pod 'MVHorizontalPicker'
 ```
+
 Once installed, just import MVHorizontalPicker in your classes and you're good to go.
 
 ## Sample Code
