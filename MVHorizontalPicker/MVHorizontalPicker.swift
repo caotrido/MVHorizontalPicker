@@ -40,6 +40,36 @@ import UIKit
         }
     }
     
+    @IBInspectable public var edgesGradientWidth: CGFloat = 0 {
+        didSet {
+            updateGradient(frame: self.bounds, edgesGradientWidth: edgesGradientWidth)
+        }
+    }
+    
+    public override func layoutSubviews() {
+        
+        updateGradient(frame: self.bounds, edgesGradientWidth: edgesGradientWidth)
+    }
+    
+    private func updateGradient(frame frame: CGRect, edgesGradientWidth: CGFloat) {
+        
+        if edgesGradientWidth > 0 && frame.width > 0 {
+            let gradient = CAGradientLayer()
+            gradient.frame = frame
+            let clearColor = UIColor.clearColor().CGColor
+            let backgroundColor = UIColor.whiteColor().CGColor
+            gradient.colors = [ clearColor, backgroundColor, backgroundColor, clearColor ]
+            let gradientWidth = edgesGradientWidth / frame.width
+            gradient.locations = [ 0, gradientWidth, 1 - gradientWidth, 1]
+            gradient.startPoint = CGPointZero
+            gradient.endPoint = CGPointMake(1, 0)
+            self.layer.mask = gradient
+        }
+        else {
+            self.layer.mask = nil
+        }
+    }
+    
     public var itemWidth: CGFloat {
         get {
             return scrollViewWidthConstraint.constant
@@ -65,6 +95,7 @@ import UIKit
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var scrollViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet private var triangleIndicator: MVPickerTriangleIndicator!
+    @IBOutlet private var leftGradientHolder: UIView!
 
     private var previousItemIndex: Int?
 
