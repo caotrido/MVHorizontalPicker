@@ -10,7 +10,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 import UIKit
 
-
 @IBDesignable public class MVHorizontalPicker: UIControl {
     
     @IBInspectable public var borderWidth: CGFloat {
@@ -47,7 +46,7 @@ import UIKit
     }
     
     public override func layoutSubviews() {
-        
+        super.layoutSubviews()
         updateGradient(frame: self.bounds, edgesGradientWidth: edgesGradientWidth)
     }
     
@@ -194,14 +193,38 @@ import UIKit
     
     private func updateSelectedIndex(selectedItemIndex: Int, animated: Bool) {
         
-        let offset = CGPoint(x: CGFloat(selectedItemIndex) * scrollView.frame.width, y: 0)
-        scrollView.setContentOffset(offset, animated: animated)
-        
-        updateSelection(selectedItemIndex, previousItemIndex: previousItemIndex)
-        
-        previousItemIndex = selectedItemIndex
+        if scrollView.contentSize != CGSizeZero {
+            let offset = CGPoint(x: CGFloat(selectedItemIndex) * scrollView.frame.width, y: 0)
+            scrollView.setContentOffset(offset, animated: animated)
+            
+            updateSelection(selectedItemIndex, previousItemIndex: previousItemIndex)
+            
+            previousItemIndex = selectedItemIndex
+        }
+    }
+
+    // MARK: KVO
+    private var myContext = 0xDEADC0DE
+    public override func awakeFromNib() {
+        super.awakeFromNib()
+        scrollView.addObserver(self, forKeyPath: "contentSize", options: .New, context: &myContext)
+    }
+    override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if context == &myContext {
+            if let newValue = change?[NSKeyValueChangeNewKey] {
+                if newValue.CGSizeValue() != CGSizeZero {
+                    updateSelectedIndex(_selectedItemIndex, animated: false)
+                }
+            }
+        }
+        else {
+            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+        }
     }
     
+    deinit {
+        scrollView.removeObserver(self, forKeyPath: "contentSize", context: &myContext)
+    }
 }
 
 extension MVHorizontalPicker: UIScrollViewDelegate {
@@ -248,6 +271,7 @@ extension MVHorizontalPicker: UIScrollViewDelegate {
     private func updateSelectedItem(scrollView: UIScrollView) -> Int {
         
         let selectedItemIndex = calculateSelectedItemIndex(scrollView)
+
         if selectedItemIndex != previousItemIndex {
             
             updateSelection(selectedItemIndex, previousItemIndex: previousItemIndex)
