@@ -206,7 +206,7 @@ import UIKit
 
     // MARK: KVO
     private var rendersInInterfaceBuilder = false
-    private var myContext = 0xDEADC0DE
+    private var myContext: UInt = 0xDEADC0DE
     public override func awakeFromNib() {
         super.awakeFromNib()
         if !rendersInInterfaceBuilder {
