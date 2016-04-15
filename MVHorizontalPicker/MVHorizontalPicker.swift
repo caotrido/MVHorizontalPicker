@@ -148,6 +148,7 @@ import UIKit
     
     public override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
+        rendersInInterfaceBuilder = true
     }
 
     private func reloadSubviews(titles titles: [String]) {
@@ -204,12 +205,18 @@ import UIKit
     }
 
     // MARK: KVO
+    private var rendersInInterfaceBuilder = false
     private var myContext = 0xDEADC0DE
     public override func awakeFromNib() {
         super.awakeFromNib()
-        scrollView.addObserver(self, forKeyPath: "contentSize", options: .New, context: &myContext)
+        if !rendersInInterfaceBuilder {
+            scrollView.addObserver(self, forKeyPath: "contentSize", options: .New, context: &myContext)
+        }
     }
     override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if rendersInInterfaceBuilder {
+            return
+        }
         if context == &myContext {
             if let newValue = change?[NSKeyValueChangeNewKey] {
                 if newValue.CGSizeValue() != CGSizeZero {
@@ -223,7 +230,9 @@ import UIKit
     }
     
     deinit {
-        scrollView.removeObserver(self, forKeyPath: "contentSize", context: &myContext)
+        if !rendersInInterfaceBuilder {
+            scrollView.removeObserver(self, forKeyPath: "contentSize", context: &myContext)
+        }
     }
 }
 
