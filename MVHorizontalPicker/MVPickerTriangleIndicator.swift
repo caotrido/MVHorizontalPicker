@@ -12,6 +12,9 @@ import UIKit
 
 class MVPickerTriangleIndicator: UIView {
     
+    private let width: CGFloat = 12.0
+    private let height: CGFloat = 7.0
+
     override var tintColor: UIColor! {
         didSet {
             triangleShape.strokeColor = tintColor.cgColor
@@ -24,9 +27,6 @@ class MVPickerTriangleIndicator: UIView {
     required init?(coder aDecoder: NSCoder) {
         triangleShape = CAShapeLayer()
         super.init(coder: aDecoder)
-        
-        let width = layer.frame.size.width
-        let height = layer.frame.size.height
         
         let path = CGMutablePath()
         
