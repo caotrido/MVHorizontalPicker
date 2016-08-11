@@ -18,20 +18,20 @@ extension UIView {
             self.translatesAutoresizingMaskIntoConstraints = false
             
             superview.addConstraints([
-                makeEqualityConstraint(attribute: .Left, toView: superview),
-                makeEqualityConstraint(attribute: .Top, toView: superview),
-                makeEqualityConstraint(attribute: .Right, toView: superview),
-                makeEqualityConstraint(attribute: .Bottom, toView: superview)
+                makeEqualityConstraint(attribute: .left, toView: superview),
+                makeEqualityConstraint(attribute: .top, toView: superview),
+                makeEqualityConstraint(attribute: .right, toView: superview),
+                makeEqualityConstraint(attribute: .bottom, toView: superview)
                 ])
         }
     }
-    func makeEqualityConstraint(attribute attribute: NSLayoutAttribute, toView view: UIView) -> NSLayoutConstraint {
+    func makeEqualityConstraint(attribute: NSLayoutAttribute, toView view: UIView) -> NSLayoutConstraint {
         
         return makeConstraint(attribute: attribute, toView: view, constant: 0)
     }
-    func makeConstraint(attribute attribute: NSLayoutAttribute, toView view: UIView?, constant: CGFloat) -> NSLayoutConstraint {
+    func makeConstraint(attribute: NSLayoutAttribute, toView view: UIView?, constant: CGFloat) -> NSLayoutConstraint {
         
-        return NSLayoutConstraint(item: self, attribute: attribute, relatedBy: .Equal,
+        return NSLayoutConstraint(item: self, attribute: attribute, relatedBy: .equal,
             toItem: view, attribute: attribute, multiplier: 1, constant: constant)
     }
 }

@@ -14,8 +14,8 @@ class MVPickerTriangleIndicator: UIView {
     
     override var tintColor: UIColor! {
         didSet {
-            triangleShape.strokeColor = tintColor.CGColor
-            triangleShape.fillColor = tintColor.CGColor
+            triangleShape.strokeColor = tintColor.cgColor
+            triangleShape.fillColor = tintColor.cgColor
         }
     }
     
@@ -28,17 +28,17 @@ class MVPickerTriangleIndicator: UIView {
         let width = layer.frame.size.width
         let height = layer.frame.size.height
         
-        let path = CGPathCreateMutable()
+        let path = CGMutablePath()
         
-        CGPathMoveToPoint(path, nil, 0, 0)
-        CGPathAddLineToPoint(path, nil, width/2, height)
-        CGPathAddLineToPoint(path, nil, width, 0)
-        CGPathAddLineToPoint(path, nil, 0, 0)
+        path.moveTo(nil, x: 0, y: 0)
+        path.addLineTo(nil, x: width/2, y: height)
+        path.addLineTo(nil, x: width, y: 0)
+        path.addLineTo(nil, x: 0, y: 0)
         
         triangleShape.frame = self.bounds
         triangleShape.path = path
         triangleShape.lineWidth = 1.0
         
-        self.layer.insertSublayer(triangleShape, atIndex: 0)
+        self.layer.insertSublayer(triangleShape, at: 0)
     }
 }

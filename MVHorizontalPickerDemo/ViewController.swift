@@ -28,13 +28,13 @@ class ViewController: UIViewController {
 
         picker.titles = [ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ]
 
-        picker.itemWidth = itemWidth(itemWidthSelector)
+        picker.itemWidth = itemWidth(for: itemWidthSelector)
 
-        picker.font = UIFont.boldSystemFontOfSize(fontSize(fontSizeSelector))
+        picker.font = UIFont.boldSystemFont(ofSize: fontSize(for: fontSizeSelector))
         
-        picker.borderWidth = borderWidth(borderWidthSelector)
+        picker.borderWidth = borderWidth(for: borderWidthSelector)
         
-        picker.tintColor = tintColor(tintColorSelector)
+        picker.tintColor = tintColor(for: tintColorSelector)
 
         updateLabel()
     }
@@ -52,24 +52,24 @@ class ViewController: UIViewController {
 
     @IBAction func itemWidthChanged(sender: AnyObject) {
 
-        picker.itemWidth = itemWidth(itemWidthSelector)
+        picker.itemWidth = itemWidth(for: itemWidthSelector)
     }
 
     @IBAction func fontSizeChanged(sender: AnyObject) {
         
-        picker.font = UIFont.boldSystemFontOfSize(fontSize(fontSizeSelector))
+        picker.font = UIFont.boldSystemFont(ofSize: fontSize(for: fontSizeSelector))
     }
     
     @IBAction func borderWidthChanged(sender: AnyObject) {
         
-        picker.borderWidth = borderWidth(borderWidthSelector)
+        picker.borderWidth = borderWidth(for: borderWidthSelector)
     }
     @IBAction func tintColorChanged(sender: AnyObject) {
         
-        picker.tintColor = tintColor(tintColorSelector)
+        picker.tintColor = tintColor(for: tintColorSelector)
     }
 
-    func itemWidth(itemWidthSelector: UISegmentedControl) -> CGFloat {
+    func itemWidth(for itemWidthSelector: UISegmentedControl) -> CGFloat {
         switch itemWidthSelector.selectedSegmentIndex {
         case 0: return 100
         case 1: return 125
@@ -78,7 +78,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func fontSize(fontSizeSelector: UISegmentedControl) -> CGFloat {
+    func fontSize(for fontSizeSelector: UISegmentedControl) -> CGFloat {
         switch fontSizeSelector.selectedSegmentIndex {
         case 0: return 14.0
         case 1: return 16.0
@@ -87,16 +87,16 @@ class ViewController: UIViewController {
         }
     }
     
-    func borderWidth(borderWidthSelector: UISegmentedControl) -> CGFloat {
+    func borderWidth(for borderWidthSelector: UISegmentedControl) -> CGFloat {
         return CGFloat(borderWidthSelector.selectedSegmentIndex)
     }
     
-    func tintColor(tintColorSelector: UISegmentedControl) -> UIColor {
+    func tintColor(for tintColorSelector: UISegmentedControl) -> UIColor {
         switch tintColorSelector.selectedSegmentIndex {
         case 0: return UIColor(red: 15.0/255.0, green: 164.0/255.0, blue: 69.0/255.0, alpha: 1.0)
         case 1: return UIColor(red: 0.0, green: 128.0/255.0, blue: 1.0, alpha: 1.0)
-        case 2: return UIColor.blackColor()
-        default: return UIColor.blackColor()
+        case 2: return UIColor.black
+        default: return UIColor.black
         }
     }
 }

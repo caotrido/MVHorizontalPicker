@@ -39,31 +39,31 @@ import UIKit
         
         self.label = UILabel()
         
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         addLabel(label)
         label.text = text
         label.font = font
-        label.textAlignment = NSTextAlignment.Center
-        label.lineBreakMode = .ByTruncatingMiddle
+        label.textAlignment = NSTextAlignment.center
+        label.lineBreakMode = .byTruncatingMiddle
         
         updateTextColor(selected: false)
     }
     
-    func addLabel(label: UILabel) {
+    func addLabel(_ label: UILabel) {
         self.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(label.makeEqualityConstraint(attribute: .Leading, toView: self))
-        self.addConstraint(label.makeEqualityConstraint(attribute: .Trailing, toView: self))
-        self.addConstraint(label.makeEqualityConstraint(attribute: .CenterY, toView: self))
+        self.addConstraint(label.makeEqualityConstraint(attribute: .leading, toView: self))
+        self.addConstraint(label.makeEqualityConstraint(attribute: .trailing, toView: self))
+        self.addConstraint(label.makeEqualityConstraint(attribute: .centerY, toView: self))
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
         
-    func updateTextColor(selected selected: Bool) {
+    func updateTextColor(selected: Bool) {
         
         let alpha: CGFloat = selected ? 1.0 : 0.5
-        self.label.textColor = tintColor.colorWithAlphaComponent(alpha)
+        self.label.textColor = tintColor.withAlphaComponent(alpha)
     }
 }

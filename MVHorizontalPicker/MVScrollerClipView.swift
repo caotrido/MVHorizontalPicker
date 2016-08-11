@@ -17,9 +17,9 @@ class MVScrollerClipView: UIView {
     // Explained on these posts:
     // http://stackoverflow.com/questions/1677085/paging-uiscrollview-in-increments-smaller-than-frame-size
     // http://stackoverflow.com/questions/1220354/uiscrollview-horizontal-paging-like-mobile-safari-tabs
-    override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         
-        return self.pointInside(point, withEvent: event) ? scrollView : nil
+        return self.point(inside: point, with: event) ? scrollView : nil
     }
 
 }

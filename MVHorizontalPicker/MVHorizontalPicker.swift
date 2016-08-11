@@ -50,18 +50,18 @@ import UIKit
         updateGradient(frame: self.bounds, edgesGradientWidth: edgesGradientWidth)
     }
     
-    private func updateGradient(frame frame: CGRect, edgesGradientWidth: CGFloat) {
+    private func updateGradient(frame: CGRect, edgesGradientWidth: CGFloat) {
         
         if edgesGradientWidth > 0 && frame.width > 0 {
             let gradient = CAGradientLayer()
             gradient.frame = frame
-            let clearColor = UIColor.clearColor().CGColor
-            let backgroundColor = UIColor.whiteColor().CGColor
+            let clearColor = UIColor.clear.cgColor
+            let backgroundColor = UIColor.white.cgColor
             gradient.colors = [ clearColor, backgroundColor, backgroundColor, clearColor ]
             let gradientWidth = edgesGradientWidth / frame.width
             gradient.locations = [ 0, gradientWidth, 1 - gradientWidth, 1]
-            gradient.startPoint = CGPointZero
-            gradient.endPoint = CGPointMake(1, 0)
+            gradient.startPoint = CGPoint.zero
+            gradient.endPoint = CGPoint(x: 1, y: 0)
             self.layer.mask = gradient
         }
         else {
@@ -86,7 +86,7 @@ import UIKit
     override public var tintColor: UIColor! {
         didSet {
             triangleIndicator?.tintColor = self.tintColor
-            layer.borderColor = tintColor?.CGColor
+            layer.borderColor = tintColor?.cgColor
             let _ = scrollView?.subviews.map{ $0.tintColor = tintColor }
         }
     }
@@ -129,16 +129,16 @@ import UIKit
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        let bundle = NSBundle(forClass: MVHorizontalPicker.self)
+        let bundle = Bundle(for: MVHorizontalPicker.self)
         
-        if let view = bundle.loadNibNamed("MVHorizontalPicker", owner: self, options: nil).first as? UIView {
+        if let view = bundle.loadNibNamed("MVHorizontalPicker", owner: self, options: nil)?.first as? UIView {
             
             self.addSubview(view)
             
             view.anchorToSuperview()
             
             triangleIndicator.tintColor = self.tintColor
-            layer.borderColor = self.tintColor.CGColor
+            layer.borderColor = self.tintColor.cgColor
         }
     }
     
@@ -151,7 +151,7 @@ import UIKit
         rendersInInterfaceBuilder = true
     }
 
-    private func reloadSubviews(titles titles: [String]) {
+    private func reloadSubviews(titles: [String]) {
         
         let size = scrollView.frame.size
 
@@ -168,23 +168,23 @@ import UIKit
             itemView.tintColor = self.tintColor
 
             itemView.translatesAutoresizingMaskIntoConstraints = false
-            itemView.addConstraint(itemView.makeConstraint(attribute: .Width, toView: nil, constant: size.width))
-            scrollView.addConstraint(itemView.makeConstraint(attribute: .Leading, toView: scrollView, constant: offsetX))
-            scrollView.addConstraint(itemView.makeEqualityConstraint(attribute: .Top, toView: scrollView))
-            scrollView.addConstraint(itemView.makeEqualityConstraint(attribute: .Bottom, toView: scrollView))
-            holder.addConstraint(itemView.makeEqualityConstraint(attribute: .Height, toView: holder))
+            itemView.addConstraint(itemView.makeConstraint(attribute: .width, toView: nil, constant: size.width))
+            scrollView.addConstraint(itemView.makeConstraint(attribute: .leading, toView: scrollView, constant: offsetX))
+            scrollView.addConstraint(itemView.makeEqualityConstraint(attribute: .top, toView: scrollView))
+            scrollView.addConstraint(itemView.makeEqualityConstraint(attribute: .bottom, toView: scrollView))
+            holder.addConstraint(itemView.makeEqualityConstraint(attribute: .height, toView: holder))
             
             offsetX += size.width
         }
         
         if let last = scrollView.subviews.last {
-            scrollView.addConstraint(last.makeConstraint(attribute: .Trailing, toView: scrollView, constant: 0))
+            scrollView.addConstraint(last.makeConstraint(attribute: .trailing, toView: scrollView, constant: 0))
         }
-        scrollView.contentInset = UIEdgeInsetsZero
-        scrollView.contentOffset = CGPointZero
+        scrollView.contentInset = UIEdgeInsets.zero
+        scrollView.contentOffset = CGPoint.zero
     }
     
-    public func setSelectedItemIndex(selectedItemIndex: Int, animated: Bool) {
+    public func setSelectedItemIndex(_ selectedItemIndex: Int, animated: Bool) {
         if selectedItemIndex != _selectedItemIndex {
             _selectedItemIndex = selectedItemIndex
             
@@ -192,9 +192,9 @@ import UIKit
         }
     }
     
-    private func updateSelectedIndex(selectedItemIndex: Int, animated: Bool) {
+    private func updateSelectedIndex(_ selectedItemIndex: Int, animated: Bool) {
         
-        if scrollView.contentSize != CGSizeZero {
+        if scrollView.contentSize != CGSize.zero {
             let offset = CGPoint(x: CGFloat(selectedItemIndex) * scrollView.frame.width, y: 0)
             scrollView.setContentOffset(offset, animated: animated)
             
@@ -210,22 +210,22 @@ import UIKit
     public override func awakeFromNib() {
         super.awakeFromNib()
         if !rendersInInterfaceBuilder {
-            scrollView.addObserver(self, forKeyPath: "contentSize", options: .New, context: &myContext)
+            scrollView.addObserver(self, forKeyPath: "contentSize", options: .new, context: &myContext)
         }
     }
-    override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override public func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
         if rendersInInterfaceBuilder {
             return
         }
         if context == &myContext {
-            if let newValue = change?[NSKeyValueChangeNewKey] {
-                if newValue.CGSizeValue() != CGSizeZero {
+            if let newValue = change?[NSKeyValueChangeKey.newKey] {
+                if newValue.cgSizeValue != CGSize.zero {
                     updateSelectedIndex(_selectedItemIndex, animated: false)
                 }
             }
         }
         else {
-            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
     
@@ -238,12 +238,12 @@ import UIKit
 
 extension MVHorizontalPicker: UIScrollViewDelegate {
 
-    public func scrollViewDidScroll(scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         updateSelectedItem(scrollView)
     }
     
-    public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
         let selectedItemIndex = updateSelectedItem(scrollView)
         
@@ -251,11 +251,11 @@ extension MVHorizontalPicker: UIScrollViewDelegate {
             
             _selectedItemIndex = selectedItemIndex
             
-            self.sendActionsForControlEvents(.ValueChanged)
+            self.sendActions(for: .valueChanged)
         }
     }
 
-    private func calculateSelectedItemIndex(scrollView: UIScrollView) -> Int {
+    private func calculateSelectedItemIndex(_ scrollView: UIScrollView) -> Int {
         
         let itemWidth = scrollView.frame.width
         let fractionalPage = scrollView.contentOffset.x / itemWidth
@@ -263,7 +263,7 @@ extension MVHorizontalPicker: UIScrollViewDelegate {
         return min(scrollView.subviews.count - 1, max(page, 0))
     }
 
-    private func updateSelection(selectedItemIndex: Int, previousItemIndex: Int?) {
+    private func updateSelection(_ selectedItemIndex: Int, previousItemIndex: Int?) {
         
         if let previousItemIndex = previousItemIndex,
             let previousItem = scrollView.subviews[previousItemIndex] as? MVPickerItemView {
@@ -277,7 +277,7 @@ extension MVHorizontalPicker: UIScrollViewDelegate {
         }
     }
 
-    private func updateSelectedItem(scrollView: UIScrollView) -> Int {
+    private func updateSelectedItem(_ scrollView: UIScrollView) -> Int {
         
         let selectedItemIndex = calculateSelectedItemIndex(scrollView)
 
