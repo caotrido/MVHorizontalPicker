@@ -12,8 +12,8 @@ import UIKit
 
 class MVPickerTriangleIndicator: UIView {
     
-    private let width: CGFloat = 12.0
-    private let height: CGFloat = 7.0
+    fileprivate let width: CGFloat = 12.0
+    fileprivate let height: CGFloat = 7.0
 
     override var tintColor: UIColor! {
         didSet {
@@ -22,7 +22,7 @@ class MVPickerTriangleIndicator: UIView {
         }
     }
     
-    private let triangleShape: CAShapeLayer
+    fileprivate let triangleShape: CAShapeLayer
     
     required init?(coder aDecoder: NSCoder) {
         triangleShape = CAShapeLayer()
@@ -30,10 +30,10 @@ class MVPickerTriangleIndicator: UIView {
         
         let path = CGMutablePath()
         
-        path.moveTo(nil, x: 0, y: 0)
-        path.addLineTo(nil, x: width/2, y: height)
-        path.addLineTo(nil, x: width, y: 0)
-        path.addLineTo(nil, x: 0, y: 0)
+        path.move(to: CGPoint(x: 0, y: 0))
+        path.addLine(to: CGPoint(x: width/2, y: height))
+        path.addLine(to: CGPoint(x: width, y: 0))
+        path.addLine(to: CGPoint(x: 0, y: 0))
         
         triangleShape.frame = self.bounds
         triangleShape.path = path

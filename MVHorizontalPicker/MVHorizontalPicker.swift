@@ -10,9 +10,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 import UIKit
 
-@IBDesignable public class MVHorizontalPicker: UIControl {
+@IBDesignable @objc open class MVHorizontalPicker: UIControl {
     
-    @IBInspectable public var borderWidth: CGFloat {
+    @IBInspectable open var borderWidth: CGFloat {
         get {
             return layer.borderWidth
         }
@@ -20,7 +20,7 @@ import UIKit
             layer.borderWidth = newValue
         }
     }
-    @IBInspectable public var cornerRadius: CGFloat {
+    @IBInspectable open var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
         }
@@ -29,7 +29,7 @@ import UIKit
         }
     }
     
-    @IBInspectable public var font: UIFont? {
+    @IBInspectable open var font: UIFont? {
         didSet {
             for view in scrollView.subviews {
                 if let item = view as? MVPickerItemView {
@@ -39,18 +39,18 @@ import UIKit
         }
     }
     
-    @IBInspectable public var edgesGradientWidth: CGFloat = 0 {
+    @IBInspectable open var edgesGradientWidth: CGFloat = 0 {
         didSet {
             updateGradient(frame: self.bounds, edgesGradientWidth: edgesGradientWidth)
         }
     }
     
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         updateGradient(frame: self.bounds, edgesGradientWidth: edgesGradientWidth)
     }
     
-    private func updateGradient(frame: CGRect, edgesGradientWidth: CGFloat) {
+    fileprivate func updateGradient(frame: CGRect, edgesGradientWidth: CGFloat) {
         
         if edgesGradientWidth > 0 && frame.width > 0 {
             let gradient = CAGradientLayer()
@@ -59,7 +59,10 @@ import UIKit
             let backgroundColor = UIColor.white.cgColor
             gradient.colors = [ clearColor, backgroundColor, backgroundColor, clearColor ]
             let gradientWidth = edgesGradientWidth / frame.width
-            gradient.locations = [ 0, gradientWidth, 1 - gradientWidth, 1]
+            gradient.locations = [ 0.0,
+                                   NSNumber(floatLiteral: Double(gradientWidth)),
+                                   NSNumber(floatLiteral: Double(1.0 - gradientWidth)),
+                                   1.0]
             gradient.startPoint = CGPoint.zero
             gradient.endPoint = CGPoint(x: 1, y: 0)
             self.layer.mask = gradient
@@ -69,7 +72,7 @@ import UIKit
         }
     }
     
-    public var itemWidth: CGFloat {
+    open var itemWidth: CGFloat {
         get {
             return scrollViewWidthConstraint.constant
         }
@@ -83,7 +86,7 @@ import UIKit
         }
     }
     
-    override public var tintColor: UIColor! {
+    override open var tintColor: UIColor! {
         didSet {
             triangleIndicator?.tintColor = self.tintColor
             layer.borderColor = tintColor?.cgColor
@@ -91,15 +94,15 @@ import UIKit
         }
     }
     
-    @IBOutlet private var scrollView: UIScrollView!
-    @IBOutlet private var scrollViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet private var triangleIndicator: MVPickerTriangleIndicator!
-    @IBOutlet private var leftGradientHolder: UIView!
+    @IBOutlet fileprivate var scrollView: UIScrollView!
+    @IBOutlet fileprivate var scrollViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate var triangleIndicator: MVPickerTriangleIndicator!
+    @IBOutlet fileprivate var leftGradientHolder: UIView!
 
-    private var previousItemIndex: Int?
+    fileprivate var previousItemIndex: Int?
 
-    private var _selectedItemIndex: Int = 0
-    public var selectedItemIndex: Int {
+    fileprivate var _selectedItemIndex: Int = 0
+    open var selectedItemIndex: Int {
         get {
             return _selectedItemIndex
         }
@@ -112,7 +115,7 @@ import UIKit
         }
     }
     
-    public var titles: [String] = [] {
+    open var titles: [String] = [] {
         didSet {
             
             reloadSubviews(titles: titles)
@@ -146,12 +149,12 @@ import UIKit
         super.init(frame: frame)
     }
     
-    public override func prepareForInterfaceBuilder() {
+    open override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         rendersInInterfaceBuilder = true
     }
 
-    private func reloadSubviews(titles: [String]) {
+    fileprivate func reloadSubviews(titles: [String]) {
         
         let size = scrollView.frame.size
 
@@ -184,7 +187,7 @@ import UIKit
         scrollView.contentOffset = CGPoint.zero
     }
     
-    public func setSelectedItemIndex(_ selectedItemIndex: Int, animated: Bool) {
+    open func setSelectedItemIndex(_ selectedItemIndex: Int, animated: Bool) {
         if selectedItemIndex != _selectedItemIndex {
             _selectedItemIndex = selectedItemIndex
             
@@ -192,7 +195,7 @@ import UIKit
         }
     }
     
-    private func updateSelectedIndex(_ selectedItemIndex: Int, animated: Bool) {
+    fileprivate func updateSelectedIndex(_ selectedItemIndex: Int, animated: Bool) {
         
         if scrollView.contentSize != CGSize.zero {
             let offset = CGPoint(x: CGFloat(selectedItemIndex) * scrollView.frame.width, y: 0)
@@ -205,21 +208,23 @@ import UIKit
     }
 
     // MARK: KVO
-    private var rendersInInterfaceBuilder = false
-    private var myContext: UInt = 0xDEADC0DE
-    public override func awakeFromNib() {
+    fileprivate var rendersInInterfaceBuilder = false
+    fileprivate var myContext: UInt = 0xDEADC0DE
+    open override func awakeFromNib() {
         super.awakeFromNib()
         if !rendersInInterfaceBuilder {
             scrollView.addObserver(self, forKeyPath: "contentSize", options: .new, context: &myContext)
         }
     }
-    override public func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
+
+    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
         if rendersInInterfaceBuilder {
             return
         }
         if context == &myContext {
             if let newValue = change?[NSKeyValueChangeKey.newKey] {
-                if newValue.cgSizeValue != CGSize.zero {
+                if (newValue as AnyObject).cgSizeValue != CGSize.zero {
                     updateSelectedIndex(_selectedItemIndex, animated: false)
                 }
             }
@@ -240,7 +245,7 @@ extension MVHorizontalPicker: UIScrollViewDelegate {
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        updateSelectedItem(scrollView)
+        let _ = updateSelectedItem(scrollView)
     }
     
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -255,7 +260,7 @@ extension MVHorizontalPicker: UIScrollViewDelegate {
         }
     }
 
-    private func calculateSelectedItemIndex(_ scrollView: UIScrollView) -> Int {
+    fileprivate func calculateSelectedItemIndex(_ scrollView: UIScrollView) -> Int {
         
         let itemWidth = scrollView.frame.width
         let fractionalPage = scrollView.contentOffset.x / itemWidth
@@ -263,7 +268,7 @@ extension MVHorizontalPicker: UIScrollViewDelegate {
         return min(scrollView.subviews.count - 1, max(page, 0))
     }
 
-    private func updateSelection(_ selectedItemIndex: Int, previousItemIndex: Int?) {
+    fileprivate func updateSelection(_ selectedItemIndex: Int, previousItemIndex: Int?) {
         
         if let previousItemIndex = previousItemIndex,
             let previousItem = scrollView.subviews[previousItemIndex] as? MVPickerItemView {
@@ -277,7 +282,7 @@ extension MVHorizontalPicker: UIScrollViewDelegate {
         }
     }
 
-    private func updateSelectedItem(_ scrollView: UIScrollView) -> Int {
+    fileprivate func updateSelectedItem(_ scrollView: UIScrollView) -> Int {
         
         let selectedItemIndex = calculateSelectedItemIndex(scrollView)
 
