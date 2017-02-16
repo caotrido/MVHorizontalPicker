@@ -10,12 +10,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 import UIKit
 
-class MVPickerTriangleIndicator: UIView {
+open class MVPickerTriangleIndicator: UIView {
     
     fileprivate let width: CGFloat = 12.0
     fileprivate let height: CGFloat = 7.0
 
-    override var tintColor: UIColor! {
+    override open var tintColor: UIColor! {
         didSet {
             triangleShape.strokeColor = tintColor.cgColor
             triangleShape.fillColor = tintColor.cgColor
@@ -24,7 +24,7 @@ class MVPickerTriangleIndicator: UIView {
     
     fileprivate let triangleShape: CAShapeLayer
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         triangleShape = CAShapeLayer()
         super.init(coder: aDecoder)
         

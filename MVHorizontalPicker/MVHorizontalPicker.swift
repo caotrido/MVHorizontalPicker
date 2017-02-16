@@ -96,7 +96,7 @@ import UIKit
     
     @IBOutlet fileprivate var scrollView: UIScrollView!
     @IBOutlet fileprivate var scrollViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet fileprivate var triangleIndicator: MVPickerTriangleIndicator!
+    @IBOutlet open var triangleIndicator: MVPickerTriangleIndicator!
     @IBOutlet fileprivate var leftGradientHolder: UIView!
 
     fileprivate var previousItemIndex: Int?
